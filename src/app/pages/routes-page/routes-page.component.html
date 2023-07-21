@@ -1,0 +1,52 @@
+<div class="component-bg">
+
+<ng-container *ngIf="centi; else elseTemplate" >
+  <hr>
+  <button mat-raised-button class="full-width-button" (click)="generatePDF()">Generate PDF</button>
+  <hr>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="SECTOR">
+      <th mat-header-cell *matHeaderCellDef class="center-header">SECTOR</th>
+      <td mat-cell *matCellDef="let element">{{ element.sector }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="SEDE">
+      <th mat-header-cell *matHeaderCellDef class="center-header">SEDE</th>
+      <td mat-cell *matCellDef="let element">{{ element.sede }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="NAME">
+      <th mat-header-cell *matHeaderCellDef class="center-header">RUTA</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Symbol Column 
+    <ng-container matColumnDef="TEAM">
+      <th mat-header-cell *matHeaderCellDef class="center-header">EQUIPO</th>
+      <td mat-cell *matCellDef="let element">{{ element.team }}</td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+</ng-container>
+
+<ng-template #elseTemplate>
+
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+    <p>Establishing connection with the server...</p>
+  </div>
+  <!--<app-read-excel></app-read-excel>-->
+   
+    
+</ng-template>
+
+</div>

@@ -1,0 +1,44 @@
+<!--We set up the login form by using material components-->
+<mat-card>
+    <!--We set up the header of card-->
+    <mat-card-header>
+        <mat-card-title>
+            Login
+        </mat-card-title>
+        <mat-card-subtitle>
+            Access to account
+        </mat-card-subtitle>
+    </mat-card-header>
+    
+    <!--Card content-->
+    <mat-card-content>
+        <div [formGroup]="loginForm" (submit)="submitLogin(loginForm)" class="login-container">
+
+            <!--Email-->
+            <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-error   *ngIf="username?.errors?.['required'] && username?.touched">
+                    Field username is required!
+                </mat-error> 
+                <!--<mat-error *ngIf="email?.errors?.['email'] && email?.touched">
+                    Email invalid!
+                </mat-error>-->
+            </mat-form-field>            
+            <!--Password-->
+            <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password">
+                <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
+                    Field password is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <!--Button to submit of form-->
+        <!--Button disabled if form is invalid-->
+        <!--button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Access</!--button-->
+        <!--button type="submit" color="primary" [disabled]="loginForm.invalid">Access</!--button-->
+        <button mat-raised-button color="primary" type="submit" (click)="submitLogin(loginForm)" [disabled]="loginForm.invalid">Access</button>
+
+    </mat-card-content>
+
+</mat-card>
+

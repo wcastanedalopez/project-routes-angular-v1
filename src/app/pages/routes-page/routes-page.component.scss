@@ -1,0 +1,27 @@
+table {
+    width: 80%;
+}
+.center-header {
+  text-align: justify;
+}
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px; /* Ajusta el espacio vertical entre los elementos */
+}
+
+hr {
+  background-color:rgb(250,250,250);
+}
+
+.full-width-button {
+  width: 100%;
+}
+
+.full-width-button:hover {
+  background-color: rgb(102, 194, 102);
+  color: white;
+}

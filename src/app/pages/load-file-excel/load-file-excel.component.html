@@ -1,0 +1,45 @@
+
+<mat-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Load file excel</ng-template>
+      
+          <!--<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
+          <input type="file" (change)="readExcelFile($event)" accept=".xlsx" /> 
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" optional>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Save to database</ng-template>
+        
+          <mat-label>Do you want to upload to the database?</mat-label>
+       
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <ng-container *ngIf="actualizarEstadoBoton(); else elseTemplate">
+      <p class="p-back">Back to step one and load file</p>
+        
+      </ng-container>
+      <ng-template #elseTemplate>
+      <p>To finish, click on save</p>
+        
+      </ng-template>
+      
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="convertStringToIRoute()" [disabled]="actualizarEstadoBoton()" >Save</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  
