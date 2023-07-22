@@ -313,8 +313,9 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/dashboard/home']">Home</a>
-      <a mat-list-item href="#">Manage routes</a>
-      <a mat-list-item [routerLink]="['/dashboard/routes']">Show routes</a>
+      <a mat-list-item [routerLink]="['/dashboard/routesManage']">Manage routes</a>
+      <a mat-list-item [routerLink]="['/dashboard/employeesManage']">Manage employees</a>
+      <!-- <a mat-list-item [routerLink]="['/dashboard/routes']">Show routes</a> -->
       <a mat-list-item *ngIf="token != null" (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

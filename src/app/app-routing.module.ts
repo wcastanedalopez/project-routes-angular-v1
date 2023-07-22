@@ -8,6 +8,8 @@ import { authGuard } from './guards/auth.guard';
 import { LoadFileExcelComponent } from './pages/load-file-excel/load-file-excel.component';
 import { AuxPageComponent } from './pages/aux-page/aux-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { RoutesManageComponent } from './pages/routes-manage/routes-manage.component';
+import { EmployeesManageComponent } from './pages/employees-manage/employees-manage.component';
 
 const routes: Routes = [
   {
@@ -37,8 +39,16 @@ const routes: Routes = [
         component: HomePageComponent
       },
       {
+        path: 'routesManage',
+        component: RoutesManageComponent,
+      },
+      {
         path: 'routes',
         component: RoutesPageComponent
+      },
+      {
+        path: 'employeesManage',
+        component: EmployeesManageComponent
       },
       {
         path: 'loadFile',

@@ -134,7 +134,12 @@ export class LoadFileExcelComponent implements OnInit {
         this.snackBar.open('It has been saved in the database', 'Close', config);
 
       });
-      this.router.navigate(['/dashboard/routes']);
+
+      setTimeout(() => {
+        // Instrucción a ejecutar después de 2 segundos
+        this.router.navigate(['/dashboard/routes']);
+      }, 300);
+      
       //console.log(this.listRoutesToSaveBD);
     }
   }

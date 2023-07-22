@@ -29,6 +29,12 @@ import { AuxPageComponent } from './pages/aux-page/aux-page.component';
 import { InitPageComponent } from './pages/init-page/init-page.component';
 
 import { MdbCollapseDirective } from './directives/mdb-collapse.directive';
+import { RoutesManageComponent } from './pages/routes-manage/routes-manage.component';
+import { EmployeesManageComponent } from './pages/employees-manage/employees-manage.component';
+import { ShowEmployeesPageComponent } from './pages/show-employees-page/show-employees-page.component';
+import { TableCrudEmployeesComponent } from './components/table-crud-employees/table-crud-employees.component';
+import { AddEmployeeDialogComponentComponent } from './components/add-employee-dialog-component/add-employee-dialog-component.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -46,7 +52,13 @@ import { MdbCollapseDirective } from './directives/mdb-collapse.directive';
     LoadFileExcelComponent,
     AuxPageComponent,
     InitPageComponent,
-    MdbCollapseDirective
+    MdbCollapseDirective,
+    RoutesManageComponent,
+    EmployeesManageComponent,
+    ShowEmployeesPageComponent,
+    TableCrudEmployeesComponent,
+    TableCrudEmployeesComponent,
+    AddEmployeeDialogComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +75,8 @@ import { MdbCollapseDirective } from './directives/mdb-collapse.directive';
 
     ReactiveFormsModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

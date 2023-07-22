@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IRoute } from '../models/route.interface';
 import { Observable } from 'rxjs';
+
+
+const AUTH_API = 'http://localhost:8080/api/route';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadDataService {
-  private apiUrl = 'http://localhost:8000'; 
+  //private apiUrl: string = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) { }
 
   getData(): Observable<IRoute[]> {
-    return this.http.get<IRoute[]>(`${this.apiUrl}/route`);
+    return this.http.get<IRoute[]>( AUTH_API );
   }
   pushRoute(data: IRoute) {
-    return this.http.post(`${this.apiUrl}/routes`, data);
+    return this.http.post(AUTH_API, data);
   }
 
   saveRoutesByList(listRoutes: IRoute[]): Observable<IRoute[]> {
-    const url = 'http://localhost:8000/route/addList'; // Reemplaza con la URL de tu endpoint en el backend
+    const url = AUTH_API + "/addList"; // Reemplaza con la URL de tu endpoint en el backend
     return this.http.post<IRoute[]>(url, listRoutes);
   }
 

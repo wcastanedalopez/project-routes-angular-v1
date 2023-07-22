@@ -40,13 +40,24 @@
 
 <ng-template #elseTemplate>
 
-  <div class="spinner-container">
-    <mat-spinner></mat-spinner>
-    <p>Establishing connection with the server...</p>
-  </div>
+  <ng-container *ngIf="centiLoadFile; else elseTemplate2" >
+    <button mat-raised-button class="full-width-button" (click)="loadFile()">Load Routes File</button>
+  </ng-container>  
+  <ng-template #elseTemplate2>
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+      <p>Establishing connection with the server...</p>
+    </div>
+  </ng-template>
+
+
   <!--<app-read-excel></app-read-excel>-->
    
     
 </ng-template>
 
 </div>
+
+<button mat-icon-button (click)="goBack()">
+  <mat-icon>keyboard_backspace</mat-icon>
+</button>

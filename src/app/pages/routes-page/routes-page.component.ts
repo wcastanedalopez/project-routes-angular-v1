@@ -4,6 +4,8 @@ import { LoadDataService } from 'src/app/services/load-data.service';
 import jspdf from 'jspdf';
 import 'jspdf-autotable';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-routes-page',
@@ -14,6 +16,7 @@ export class RoutesPageComponent implements OnInit {
   displayedColumns: string[] = ['SECTOR', 'SEDE', 'NAME']; //Header table of html
   dataSource: IRoute[] = []; //Dataset of table html
   centi: boolean = false; //Control view table or option for load excel
+  centiLoadFile: boolean = false; 
 
   //table pdf
   header = [this.displayedColumns];
@@ -21,11 +24,14 @@ export class RoutesPageComponent implements OnInit {
 
   constructor(
     private loadDataService: LoadDataService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private location: Location
   ) {}
   ngOnInit(): void {
     //this.router.navigate(['/dashboard/routes']);
     //Method that load data of routes from Api Rest Spring Boot
+    /**
     this.loadDataService.getData().subscribe((response: IRoute[]) => {
       this.dataSource = response;
       console.log(this.dataSource);
@@ -36,6 +42,30 @@ export class RoutesPageComponent implements OnInit {
 
       this.cdr.detectChanges(); // Forzar detección de cambios
     });
+ */
+    this.loadDataService.getData().subscribe({
+      next: (response: IRoute[]) => {
+        this.dataSource = response;
+        console.log(this.dataSource);
+        setTimeout(() => {
+          // Instrucción a ejecutar después de 2 segundos
+          this.centi = true; //For that render data in table interface
+        }, 300);
+  
+        this.cdr.detectChanges(); // Forzar detección de cambios
+      },
+      error: (err) => {
+        console.log('Error al cargar rutas');
+        setTimeout(() => {
+          // Instrucción a ejecutar después de 2 segundos
+          this.centiLoadFile = true; //For that render data in table interface
+        }, 300);
+      },
+      complete: () => console.info('Process authentication completed')  
+    });
+  }
+  loadFile() {
+    this.router.navigate(['dashboard/loadFile']);
   }
 
   /**
@@ -105,5 +135,9 @@ export class RoutesPageComponent implements OnInit {
 
     // Guardar el archivo PDF
     pdf.save('table.pdf');
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

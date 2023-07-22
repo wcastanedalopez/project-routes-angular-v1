@@ -4,6 +4,6 @@ export interface IRoute {
     name: string;
     sector: string;
     sede: string;
-    //assignment: IAssignment;
+    assignment?: string;
   }
   
